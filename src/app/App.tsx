@@ -66,12 +66,12 @@ export default function App() {
   };
 
   const galleryPhotos = [
-    '/g1.jpeg',
-    '/g2.jpg',
-    '/g3.jpg',
-    '/g4.jpeg',
-    '/g5.jpeg',
-    '/g6.jpeg'
+    'g1.jpeg',
+    'g2.jpg',
+    'g3.jpg',
+    'g4.jpeg',
+    'g5.jpeg',
+    'g6.jpeg'
   ];
 
   if (!isOpen) {
@@ -85,7 +85,7 @@ export default function App() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(/bg.jpeg)',
+            backgroundImage: 'url(bg.jpeg)',
             opacity: 0.4
           }}
         />
@@ -95,7 +95,7 @@ export default function App() {
             <div className="space-y-6">
               <div className="w-64 h-64 mx-auto rounded-full overflow-hidden border-2 border-white/40 mb-6">
                 <img
-                  src="/bg.jpeg"
+                  src="bg.jpeg"
                   alt="Yoga & Ria"
                   className="w-full h-full object-cover"
                 />
@@ -144,7 +144,7 @@ export default function App() {
             <FloralIcon />
             <div className="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-2 border-white/30">
               <img
-                src="/cowo.jpeg"
+                src="cowo.jpeg"
                 alt="Yoga"
                 className="w-full h-full object-cover"
               />
@@ -168,7 +168,7 @@ export default function App() {
             <FloralIcon />
             <div className="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-2 border-white/30">
               <img
-                src="/cewe.jpeg"
+                src="cewe.jpeg"
                 alt="Ria"
                 className="w-full h-full object-cover"
               />
@@ -334,7 +334,7 @@ export default function App() {
           }`}
         >
           <img
-            src="/bg.jpeg"
+            src="bg.jpeg"
             alt="Music Disc"
             className="w-full h-full object-cover opacity-80"
           />
@@ -347,7 +347,7 @@ export default function App() {
             </div>
           )}
         </button>
-        <audio ref={audioRef} src="/lagu.mp3" loop />
+        <audio ref={audioRef} src="lagu.mp3" loop />
       </div>
     </div>
   );
