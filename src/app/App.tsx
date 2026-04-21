@@ -181,10 +181,7 @@ export default function App() {
             <h2 className="text-5xl mb-2" style={{ fontFamily: 'Great Vibes, cursive', color: '#4A3728' }}>
               Agung Sucipto
             </h2>
-            <p style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '1px', color: '#8B6F47' }}>
-              PUTRA DARI
-            </p>
-            <p className="mt-2 px-4 text-xs" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
+            <p className="mt-4 px-4 text-xs" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
               Putra dari Alm. Bpk. Budi Santosa & Ibu Turiyah
             </p>
           </div>
@@ -207,10 +204,7 @@ export default function App() {
             <h2 className="text-5xl mb-2" style={{ fontFamily: 'Great Vibes, cursive', color: '#4A3728' }}>
               Mita Handya Waltami
             </h2>
-            <p style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '1px', color: '#8B6F47' }}>
-              PUTRI DARI
-            </p>
-            <p className="mt-2 px-4 text-xs" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
+            <p className="mt-4 px-4 text-xs" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
               Putri dari Bpk. Mugi & Ibu Samiyah
             </p>
           </div>
