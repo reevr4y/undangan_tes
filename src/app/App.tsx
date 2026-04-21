@@ -169,13 +169,13 @@ export default function App() {
               />
             </div>
             <h2 className="text-5xl mb-2" style={{ fontFamily: 'Great Vibes, cursive', color: '#4A3728' }}>
-              Yoga
+              Agung Sucipto
             </h2>
             <p style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '1px', color: '#8B6F47' }}>
               PUTRA DARI
             </p>
-            <p className="mt-2" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
-              -
+            <p className="mt-2 px-4 text-sm" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
+              Almarhum bapak Budi santosa dan ibu turiyah
             </p>
           </div>
 
@@ -195,13 +195,13 @@ export default function App() {
               />
             </div>
             <h2 className="text-5xl mb-2" style={{ fontFamily: 'Great Vibes, cursive', color: '#4A3728' }}>
-              Ria
+              Mita Handya Waltami
             </h2>
             <p style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '1px', color: '#8B6F47' }}>
               PUTRI DARI
             </p>
-            <p className="mt-2" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
-              -
+            <p className="mt-2 px-4 text-sm" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
+              Putri bapak Mugi dan ibu samiyah
             </p>
           </div>
         </section>
@@ -354,7 +354,6 @@ export default function App() {
               <div className="text-center space-y-1" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
                 <p className="text-lg" style={{ letterSpacing: '1px' }}>JUMAT - MINGGU</p>
                 <p className="text-lg" style={{ letterSpacing: '1px' }}>22 - 24 MEI 2026</p>
-                <p className="mt-2" style={{ color: '#8B6F47' }}>Lokasi Acara</p>
               </div>
             </div>
 
