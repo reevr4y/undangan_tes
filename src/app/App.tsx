@@ -331,23 +331,23 @@ export default function App() {
         </section>
 
         {/* Event & Countdown Section */}
-        <section className="rounded-t-[80px] p-8 backdrop-blur-sm"
+        <section className="rounded-t-[80px] p-6 backdrop-blur-sm"
           style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(245, 237, 227, 0.5)' }}>
           <FloralIcon />
-          <div className="text-center mb-8">
-            <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
+          <div className="text-center mb-10">
+            <div className="grid grid-cols-4 gap-2 max-w-sm mx-auto">
               {[
                 { value: countdown.days, label: 'DAYS' },
                 { value: countdown.hours, label: 'HOURS' },
                 { value: countdown.minutes, label: 'MINS' },
                 { value: countdown.seconds, label: 'SECS' }
               ].map((item, idx) => (
-                <div key={idx} className="rounded-2xl p-4 backdrop-blur-sm"
+                <div key={idx} className="rounded-2xl py-3 px-1 backdrop-blur-sm"
                   style={{ border: '1px solid rgba(139, 111, 71, 0.15)', backgroundColor: 'rgba(237, 228, 216, 0.6)' }}>
-                  <div className="text-3xl font-bold mb-1" style={{ fontFamily: 'Alice, serif', color: '#4A3728' }}>
+                  <div className="text-2xl font-bold mb-1" style={{ fontFamily: 'Alice, serif', color: '#4A3728' }}>
                     {String(item.value).padStart(2, '0')}
                   </div>
-                  <div className="text-xs font-medium" style={{ fontFamily: 'Lora, serif', letterSpacing: '1px', color: '#8B6F47' }}>
+                  <div className="text-[10px] font-medium" style={{ fontFamily: 'Lora, serif', letterSpacing: '1px', color: '#8B6F47' }}>
                     {item.label}
                   </div>
                 </div>
@@ -355,34 +355,34 @@ export default function App() {
             </div>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-10">
             <div className="pt-6" style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}>
-              <h3 className="text-2xl mb-3 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', letterSpacing: '2px', color: '#4A3728' }}>
+              <h3 className="text-xl mb-4 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', letterSpacing: '2px', color: '#4A3728' }}>
                 TASYAKURAN
               </h3>
               <div className="text-center space-y-1" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
-                <p className="text-lg font-medium" style={{ letterSpacing: '1px' }}>JUMAT - MINGGU</p>
-                <p className="text-lg font-medium" style={{ letterSpacing: '1px' }}>22 - 24 MEI 2026</p>
+                <p className="text-sm font-medium" style={{ letterSpacing: '1px' }}>JUMAT - MINGGU</p>
+                <p className="text-sm font-medium" style={{ letterSpacing: '1px' }}>22 - 24 MEI 2026</p>
               </div>
             </div>
 
             <div className="pt-6" style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}>
-              <h3 className="text-2xl mb-3 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', letterSpacing: '2px', color: '#4A3728' }}>
+              <h3 className="text-xl mb-4 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', letterSpacing: '2px', color: '#4A3728' }}>
                 AKAD NIKAH
               </h3>
               <div className="text-center space-y-1" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
-                <p className="text-lg" style={{ letterSpacing: '1px' }}>SENIN, 25 MEI 2026</p>
-                <p>09:00 - 10:30 WIB</p>
+                <p className="text-sm font-medium" style={{ letterSpacing: '1px' }}>SENIN, 25 MEI 2026</p>
+                <p className="text-sm">09:00 - 10:30 WIB</p>
               </div>
             </div>
 
             <div className="pt-6" style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}>
-              <h3 className="text-2xl mb-3 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', letterSpacing: '2px', color: '#4A3728' }}>
+              <h3 className="text-xl mb-4 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', letterSpacing: '2px', color: '#4A3728' }}>
                 RESEPSI
               </h3>
               <div className="text-center space-y-1" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
-                <p className="text-lg" style={{ letterSpacing: '1px' }}>SENIN, 25 MEI 2026</p>
-                <p>11:00 - SELESAI</p>
+                <p className="text-sm font-medium" style={{ letterSpacing: '1px' }}>SENIN, 25 MEI 2026</p>
+                <p className="text-sm">11:00 - SELESAI</p>
               </div>
             </div>
 
