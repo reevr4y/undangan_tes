@@ -381,7 +381,7 @@ export default function App() {
             <div className="pt-6" style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}>
                <div className="rounded-2xl overflow-hidden shadow-md mb-4" style={{ height: '300px' }}>
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.518!2d109.550218!3d-7.351643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNfKwMjEnMDUuOSJTIDEwOcKwMzMnMDAuOCJF!5e0!3m2!1sen!2sid!4v1713690000000!5m2!1sen!2sid"
+                  src="https://maps.google.com/maps?q=-7.351643,109.550218&hl=id&z=17&output=embed"
                   width="100%" 
                   height="100%" 
                   style={{ border: 0 }} 
