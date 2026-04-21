@@ -146,16 +146,19 @@ export default function App() {
 
       <div className="relative z-10 max-w-2xl mx-auto px-4 py-12 space-y-16">
         {/* Quote Section */}
-        <section className="rounded-t-[80px] p-8 text-center backdrop-blur-sm"
+        <section className="rounded-t-[80px] p-6 text-center backdrop-blur-sm"
           style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(245, 237, 227, 0.5)' }}>
           <FloralIcon />
-          <p className="mb-4 font-medium" style={{ fontFamily: 'Alice, serif', color: '#8B6F47', fontSize: '0.9rem', letterSpacing: '3px' }}>
+          <p className="mb-3 font-medium" style={{ fontFamily: 'Alice, serif', color: '#8B6F47', fontSize: '0.75rem', letterSpacing: '3px' }}>
             BISMILLAHIRRAHMANIRRAHIM
           </p>
-          <p className="italic text-lg leading-relaxed" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
-            "And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy."
+          <div dir="rtl" className="mb-4 text-2xl leading-[1.8]" style={{ fontFamily: 'Amiri, serif', color: '#4A3728' }}>
+            وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ
+          </div>
+          <p className="italic text-sm leading-relaxed" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
+            "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
           </p>
-          <p className="mt-4 font-medium" style={{ fontFamily: 'Alice, serif', letterSpacing: '2px', color: '#8B6F47' }}>
+          <p className="mt-3 font-medium" style={{ fontFamily: 'Alice, serif', letterSpacing: '2px', color: '#8B6F47', fontSize: '0.75rem' }}>
             — QS. AR-RUM: 21 —
           </p>
         </section>
