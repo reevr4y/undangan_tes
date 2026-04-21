@@ -107,8 +107,10 @@ export default function App() {
               <h1 className="text-xl mb-4" style={{ fontFamily: 'Alice, serif', color: '#6B5339', letterSpacing: '2px' }}>
                 THE WEDDING OF
               </h1>
-              <div className="text-6xl mb-8 leading-tight" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
-                Agung & Mita
+              <div className="flex flex-col items-center justify-center mb-8" style={{ color: '#4A3728' }}>
+                <span className="text-5xl" style={{ fontFamily: 'Cinzel Decorative, serif', lineHeight: '1.2' }}>Agung</span>
+                <span className="text-3xl my-2" style={{ fontFamily: 'Alice, serif' }}>&</span>
+                <span className="text-5xl" style={{ fontFamily: 'Cinzel Decorative, serif', lineHeight: '1.2' }}>Mita</span>
               </div>
               <button
                 onClick={() => setIsOpen(true)}
