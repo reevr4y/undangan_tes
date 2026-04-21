@@ -162,9 +162,9 @@ export default function App() {
 
         {/* Mempelai Section */}
         <section className="space-y-10">
-          <div className="text-center mb-6">
-            <p className="text-sm italic mb-3 font-medium" style={{ fontFamily: 'Lora, serif', color: '#8B6F47' }}>Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
-            <p className="px-6 text-xs leading-relaxed" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
+          <div className="text-center mb-8">
+            <p className="text-base italic mb-4 font-medium" style={{ fontFamily: 'Lora, serif', color: '#8B6F47' }}>Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
+            <p className="px-6 text-sm leading-relaxed" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
               Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:
             </p>
           </div>
@@ -180,7 +180,7 @@ export default function App() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <h2 className="text-5xl mb-3" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
+            <h2 className="text-4xl mb-3" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
               Agung Sucipto
             </h2>
             <p className="mt-2 px-4 text-xs font-medium" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
@@ -203,7 +203,7 @@ export default function App() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <h2 className="text-5xl mb-3" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
+            <h2 className="text-4xl mb-3" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
               Mita Handya Waltami
             </h2>
             <p className="mt-2 px-4 text-xs font-medium" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
@@ -216,7 +216,7 @@ export default function App() {
         <section className="rounded-t-[80px] p-8 backdrop-blur-sm"
           style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(245, 237, 227, 0.5)' }}>
           <FloralIcon />
-          <h3 className="text-5xl mb-3 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
+          <h3 className="text-4xl mb-3 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
             Perjalanan Asmara
           </h3>
           <p className="text-center mb-8 font-bold" style={{ fontFamily: 'Lora, serif', letterSpacing: '2px', color: '#8B6F47', fontSize: '0.85rem' }}>
@@ -307,7 +307,7 @@ export default function App() {
         <section className="rounded-t-[80px] p-8 backdrop-blur-sm"
           style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(245, 237, 227, 0.5)' }}>
           <FloralIcon />
-          <h3 className="text-5xl mb-3 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
+          <h3 className="text-4xl mb-3 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
             Our Moments
           </h3>
           <p className="text-center mb-8 font-bold" style={{ fontFamily: 'Lora, serif', letterSpacing: '2px', color: '#8B6F47', fontSize: '0.85rem' }}>
