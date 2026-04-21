@@ -104,10 +104,10 @@ export default function App() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <h1 className="text-5xl mb-2" style={{ fontFamily: 'Great Vibes, cursive', color: '#6B5339' }}>
-                The Wedding of
+              <h1 className="text-3xl mb-4" style={{ fontFamily: 'Alice, serif', color: '#6B5339', letterSpacing: '2px' }}>
+                THE WEDDING OF
               </h1>
-              <div className="text-7xl mb-8" style={{ fontFamily: 'Great Vibes, cursive', color: '#4A3728' }}>
+              <div className="text-8xl mb-8 leading-tight" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
                 Agung & Mita
               </div>
               <button
@@ -147,22 +147,22 @@ export default function App() {
         <section className="rounded-t-[80px] p-8 text-center backdrop-blur-sm"
           style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(245, 237, 227, 0.5)' }}>
           <FloralIcon />
-          <p className="mb-4" style={{ fontFamily: 'Playfair Display, serif', color: '#8B6F47', fontSize: '0.9rem', letterSpacing: '1px' }}>
+          <p className="mb-6 font-medium" style={{ fontFamily: 'Alice, serif', color: '#8B6F47', fontSize: '1.1rem', letterSpacing: '4px' }}>
             BISMILLAHIRRAHMANIRRAHIM
           </p>
-          <p className="italic text-lg leading-relaxed" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
+          <p className="italic text-xl leading-relaxed" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
             "And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy."
           </p>
-          <p className="mt-4" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '1px', color: '#8B6F47' }}>
-            — QS. AR-RUM: 21
+          <p className="mt-6 font-medium" style={{ fontFamily: 'Alice, serif', letterSpacing: '2px', color: '#8B6F47' }}>
+            — QS. AR-RUM: 21 —
           </p>
         </section>
 
         {/* Mempelai Section */}
-        <section className="space-y-8">
-          <div className="text-center mb-8">
-            <p className="text-sm italic mb-2" style={{ fontFamily: 'Playfair Display, serif', color: '#8B6F47' }}>Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
-            <p className="px-6 text-xs leading-relaxed" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
+        <section className="space-y-12">
+          <div className="text-center mb-10">
+            <p className="text-base italic mb-4 font-medium" style={{ fontFamily: 'Lora, serif', color: '#8B6F47' }}>Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
+            <p className="px-6 text-sm leading-relaxed" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
               Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:
             </p>
           </div>
@@ -178,10 +178,10 @@ export default function App() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <h2 className="text-5xl mb-2" style={{ fontFamily: 'Great Vibes, cursive', color: '#4A3728' }}>
+            <h2 className="text-6xl mb-4" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
               Agung Sucipto
             </h2>
-            <p className="mt-4 px-4 text-xs" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
+            <p className="mt-4 px-4 text-sm font-medium" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
               Putra dari Alm. Bpk. Budi Santosa & Ibu Turiyah
             </p>
           </div>
@@ -201,10 +201,10 @@ export default function App() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <h2 className="text-5xl mb-2" style={{ fontFamily: 'Great Vibes, cursive', color: '#4A3728' }}>
+            <h2 className="text-6xl mb-4" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
               Mita Handya Waltami
             </h2>
-            <p className="mt-4 px-4 text-xs" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
+            <p className="mt-4 px-4 text-sm font-medium" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
               Putri dari Bpk. Mugi & Ibu Samiyah
             </p>
           </div>
@@ -214,10 +214,10 @@ export default function App() {
         <section className="rounded-t-[80px] p-8 backdrop-blur-sm"
           style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(245, 237, 227, 0.5)' }}>
           <FloralIcon />
-          <h3 className="text-5xl mb-2 text-center" style={{ fontFamily: 'Great Vibes, cursive', color: '#4A3728' }}>
+          <h3 className="text-6xl mb-4 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
             Perjalanan Asmara
           </h3>
-          <p className="text-center mb-10" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '1px', color: '#8B6F47', fontSize: '0.85rem' }}>
+          <p className="text-center mb-12 font-bold" style={{ fontFamily: 'Lora, serif', letterSpacing: '4px', color: '#8B6F47', fontSize: '1rem' }}>
             OUR LOVE STORY
           </p>
 
@@ -266,10 +266,10 @@ export default function App() {
                   ) : (
                     /* Text Left */
                     <div className="text-right">
-                      <h4 className="text-xl mb-1" style={{ fontFamily: 'Great Vibes, cursive', color: '#4A3728' }}>
+                      <h4 className="text-2xl mb-2 font-medium" style={{ fontFamily: 'Alice, serif', color: '#4A3728' }}>
                         {story.title}
                       </h4>
-                      <p className="text-[0.65rem] leading-relaxed" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
+                      <p className="text-sm leading-relaxed" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
                         {story.text}
                       </p>
                     </div>
@@ -281,10 +281,10 @@ export default function App() {
                   {idx % 2 === 0 ? (
                     /* Text Right */
                     <div className="text-left">
-                      <h4 className="text-xl mb-1" style={{ fontFamily: 'Great Vibes, cursive', color: '#4A3728' }}>
+                      <h4 className="text-2xl mb-2 font-medium" style={{ fontFamily: 'Alice, serif', color: '#4A3728' }}>
                         {story.title}
                       </h4>
-                      <p className="text-[0.65rem] leading-relaxed" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
+                      <p className="text-sm leading-relaxed" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
                         {story.text}
                       </p>
                     </div>
@@ -305,10 +305,10 @@ export default function App() {
         <section className="rounded-t-[80px] p-8 backdrop-blur-sm"
           style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(245, 237, 227, 0.5)' }}>
           <FloralIcon />
-          <h3 className="text-5xl mb-6 text-center" style={{ fontFamily: 'Great Vibes, cursive', color: '#4A3728' }}>
+          <h3 className="text-6xl mb-4 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
             Our Moments
           </h3>
-          <p className="text-center mb-8" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '1px', color: '#8B6F47' }}>
+          <p className="text-center mb-10 font-bold" style={{ fontFamily: 'Lora, serif', letterSpacing: '4px', color: '#8B6F47', fontSize: '1rem' }}>
             PRE-WEDDING GALLERY
           </p>
           <Masonry columnsCount={2} gutter="12px">
@@ -339,10 +339,10 @@ export default function App() {
               ].map((item, idx) => (
                 <div key={idx} className="rounded-2xl p-4 backdrop-blur-sm"
                   style={{ border: '1px solid rgba(139, 111, 71, 0.15)', backgroundColor: 'rgba(237, 228, 216, 0.6)' }}>
-                  <div className="text-3xl font-bold mb-1" style={{ fontFamily: 'Playfair Display, serif', color: '#4A3728' }}>
+                  <div className="text-4xl font-bold mb-1" style={{ fontFamily: 'Alice, serif', color: '#4A3728' }}>
                     {String(item.value).padStart(2, '0')}
                   </div>
-                  <div className="text-xs" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '1px', color: '#8B6F47' }}>
+                  <div className="text-sm font-medium" style={{ fontFamily: 'Lora, serif', letterSpacing: '2px', color: '#8B6F47' }}>
                     {item.label}
                   </div>
                 </div>
@@ -352,17 +352,17 @@ export default function App() {
 
           <div className="space-y-6">
             <div className="pt-6" style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}>
-              <h3 className="text-2xl mb-3 text-center" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '2px', color: '#4A3728' }}>
+              <h3 className="text-3xl mb-4 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', letterSpacing: '2px', color: '#4A3728' }}>
                 TASYAKURAN
               </h3>
-              <div className="text-center space-y-1" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
-                <p className="text-lg" style={{ letterSpacing: '1px' }}>JUMAT - MINGGU</p>
-                <p className="text-lg" style={{ letterSpacing: '1px' }}>22 - 24 MEI 2026</p>
+              <div className="text-center space-y-2" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
+                <p className="text-xl font-medium" style={{ letterSpacing: '1px' }}>JUMAT - MINGGU</p>
+                <p className="text-xl font-medium" style={{ letterSpacing: '1px' }}>22 - 24 MEI 2026</p>
               </div>
             </div>
 
             <div className="pt-6" style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}>
-              <h3 className="text-2xl mb-3 text-center" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '2px', color: '#4A3728' }}>
+              <h3 className="text-3xl mb-4 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', letterSpacing: '2px', color: '#4A3728' }}>
                 AKAD NIKAH
               </h3>
               <div className="text-center space-y-1" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
@@ -372,7 +372,7 @@ export default function App() {
             </div>
 
             <div className="pt-6" style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}>
-              <h3 className="text-2xl mb-3 text-center" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '2px', color: '#4A3728' }}>
+              <h3 className="text-3xl mb-4 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', letterSpacing: '2px', color: '#4A3728' }}>
                 RESEPSI
               </h3>
               <div className="text-center space-y-1" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
@@ -396,8 +396,8 @@ export default function App() {
               <button className="w-full py-2 px-4 rounded-full transition-all flex items-center justify-center gap-2 hover:shadow-md"
                 onClick={() => window.open(`https://www.google.com/maps/place/7%C2%B021'05.9"S+109%C2%B033'00.8"E/@-7.351643,109.550218,17z/data=!3m1!4b1!4m4!3m3!8m2!3d-7.351643!4d109.550218`, '_blank')}
                 style={{
-                  fontFamily: 'Playfair Display, serif',
-                  letterSpacing: '1px',
+                  fontFamily: 'Alice, serif',
+                  letterSpacing: '2px',
                   border: '1px solid rgba(139, 111, 71, 0.35)',
                   color: '#6B5339',
                   backgroundColor: 'transparent',
@@ -415,12 +415,12 @@ export default function App() {
         <section className="rounded-t-[80px] p-8 backdrop-blur-sm"
           style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(245, 237, 227, 0.5)' }}>
           <FloralIcon />
-          <h3 className="text-4xl mb-6 text-center" style={{ fontFamily: 'Great Vibes, cursive', color: '#4A3728' }}>
+          <h3 className="text-5xl mb-8 text-center" style={{ fontFamily: 'Alice, serif', color: '#4A3728' }}>
             Konfirmasi Kehadiran
           </h3>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block mb-2" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '1px', color: '#6B5339' }}>
+              <label className="block mb-3 font-bold" style={{ fontFamily: 'Alice, serif', letterSpacing: '2px', color: '#6B5339' }}>
                 NAMA
               </label>
               <input
@@ -428,10 +428,10 @@ export default function App() {
                 required
                 value={formData.nama}
                 onChange={(e) => setFormData({ ...formData, nama: e.target.value })}
-                className="w-full rounded-lg px-4 py-3 focus:outline-none"
+                className="w-full rounded-lg px-4 py-4 focus:outline-none text-base"
                 placeholder="Masukkan nama Anda"
                 style={{
-                  fontFamily: 'Playfair Display, serif',
+                  fontFamily: 'Lora, serif',
                   backgroundColor: 'rgba(139, 111, 71, 0.05)',
                   border: '1px solid rgba(139, 111, 71, 0.25)',
                   color: '#4A3728',
@@ -439,16 +439,16 @@ export default function App() {
               />
             </div>
             <div>
-              <label className="block mb-2" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '1px', color: '#6B5339' }}>
+              <label className="block mb-3 font-bold" style={{ fontFamily: 'Alice, serif', letterSpacing: '2px', color: '#6B5339' }}>
                 KEHADIRAN
               </label>
               <select
                 required
                 value={formData.kehadiran}
                 onChange={(e) => setFormData({ ...formData, kehadiran: e.target.value })}
-                className="w-full rounded-lg px-4 py-3 focus:outline-none"
+                className="w-full rounded-lg px-4 py-4 focus:outline-none text-base"
                 style={{
-                  fontFamily: 'Playfair Display, serif',
+                  fontFamily: 'Lora, serif',
                   backgroundColor: 'rgba(139, 111, 71, 0.05)',
                   border: '1px solid rgba(139, 111, 71, 0.25)',
                   color: '#4A3728',
@@ -461,9 +461,9 @@ export default function App() {
             </div>
             <button
               type="submit"
-              className="w-full py-3 rounded-full transition-all hover:shadow-lg"
+              className="w-full py-4 rounded-full transition-all hover:shadow-lg font-bold"
               style={{
-                fontFamily: 'Playfair Display, serif',
+                fontFamily: 'Alice, serif',
                 letterSpacing: '2px',
                 border: '1px solid rgba(139, 111, 71, 0.35)',
                 color: '#6B5339',
@@ -481,14 +481,14 @@ export default function App() {
         <section className="rounded-t-[80px] p-8 text-center backdrop-blur-sm"
           style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(245, 237, 227, 0.5)' }}>
           <FloralIcon />
-          <p className="text-lg leading-relaxed mb-6" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
+          <p className="text-xl leading-relaxed mb-8" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
             Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kami.
           </p>
-          <p className="text-xl mb-2" style={{ fontFamily: 'Playfair Display, serif', color: '#4A3728' }}>
+          <p className="text-2xl mb-4 font-medium" style={{ fontFamily: 'Alice, serif', color: '#4A3728' }}>
             Terima Kasih
           </p>
-          <p className="text-sm italic mb-8" style={{ fontFamily: 'Playfair Display, serif', color: '#8B6F47' }}>Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
-          <div className="text-5xl" style={{ fontFamily: 'Great Vibes, cursive', color: '#4A3728' }}>
+          <p className="text-sm italic mb-10 font-medium" style={{ fontFamily: 'Lora, serif', color: '#8B6F47' }}>Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
+          <div className="text-6xl" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
             A & M
           </div>
         </section>
