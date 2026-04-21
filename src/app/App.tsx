@@ -62,7 +62,7 @@ export default function App() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    alert('Terima kasih atas konfirmasi Anda!');
+    alert('Terima kasih banyak atas konfirmasi Anda. Semoga kita bisa bertemu di hari bahagia kami!');
   };
 
   const galleryPhotos = [
@@ -100,7 +100,7 @@ export default function App() {
                 style={{ border: '2px solid rgba(139, 111, 71, 0.35)' }}>
                 <img
                   src="bg.jpeg"
-                  alt="Yoga & Ria"
+                  alt="Agung & Mita"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -108,7 +108,7 @@ export default function App() {
                 The Wedding of
               </h1>
               <div className="text-7xl mb-8" style={{ fontFamily: 'Great Vibes, cursive', color: '#4A3728' }}>
-                Yoga & Ria
+                Agung & Mita
               </div>
               <button
                 onClick={() => setIsOpen(true)}
@@ -147,6 +147,9 @@ export default function App() {
         <section className="rounded-t-[80px] p-8 text-center backdrop-blur-sm"
           style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(245, 237, 227, 0.5)' }}>
           <FloralIcon />
+          <p className="mb-4" style={{ fontFamily: 'Playfair Display, serif', color: '#8B6F47', fontSize: '0.9rem', letterSpacing: '1px' }}>
+            BISMILLAHIRRAHMANIRRAHIM
+          </p>
           <p className="italic text-lg leading-relaxed" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
             "And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy."
           </p>
@@ -157,6 +160,13 @@ export default function App() {
 
         {/* Mempelai Section */}
         <section className="space-y-8">
+          <div className="text-center mb-8">
+            <p className="text-sm italic mb-2" style={{ fontFamily: 'Playfair Display, serif', color: '#8B6F47' }}>Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
+            <p className="px-6 text-xs leading-relaxed" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
+              Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:
+            </p>
+          </div>
+
           <div className="rounded-t-[80px] p-8 text-center backdrop-blur-sm"
             style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(245, 237, 227, 0.5)' }}>
             <FloralIcon />
@@ -164,7 +174,7 @@ export default function App() {
               style={{ border: '2px solid rgba(139, 111, 71, 0.3)' }}>
               <img
                 src="cowo.jpeg"
-                alt="Yoga"
+                alt="Agung Sucipto"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -174,8 +184,8 @@ export default function App() {
             <p style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '1px', color: '#8B6F47' }}>
               PUTRA DARI
             </p>
-            <p className="mt-2 px-4 text-sm" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
-              Almarhum bapak Budi santosa dan ibu turiyah
+            <p className="mt-2 px-4 text-xs" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
+              Putra dari Alm. Bpk. Budi Santosa & Ibu Turiyah
             </p>
           </div>
 
@@ -190,7 +200,7 @@ export default function App() {
               style={{ border: '2px solid rgba(139, 111, 71, 0.3)' }}>
               <img
                 src="cewe.jpeg"
-                alt="Ria"
+                alt="Mita Handya Waltami"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -200,8 +210,8 @@ export default function App() {
             <p style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '1px', color: '#8B6F47' }}>
               PUTRI DARI
             </p>
-            <p className="mt-2 px-4 text-sm" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
-              Putri bapak Mugi dan ibu samiyah
+            <p className="mt-2 px-4 text-xs" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
+              Putri dari Bpk. Mugi & Ibu Samiyah
             </p>
           </div>
         </section>
@@ -480,11 +490,12 @@ export default function App() {
           <p className="text-lg leading-relaxed mb-6" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
             Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kami.
           </p>
-          <p className="text-xl mb-4" style={{ fontFamily: 'Playfair Display, serif', color: '#4A3728' }}>
+          <p className="text-xl mb-2" style={{ fontFamily: 'Playfair Display, serif', color: '#4A3728' }}>
             Terima Kasih
           </p>
+          <p className="text-sm italic mb-8" style={{ fontFamily: 'Playfair Display, serif', color: '#8B6F47' }}>Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
           <div className="text-5xl" style={{ fontFamily: 'Great Vibes, cursive', color: '#4A3728' }}>
-            Y & R
+            A & M
           </div>
         </section>
       </div>
