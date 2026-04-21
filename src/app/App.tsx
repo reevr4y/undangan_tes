@@ -16,7 +16,7 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const weddingDate = new Date('2035-10-01T10:00:00');
+  const weddingDate = new Date('2026-05-25T10:00:00');
 
   useEffect(() => {
     if (isOpen && audioRef.current) {
@@ -349,27 +349,23 @@ export default function App() {
           <div className="space-y-6">
             <div className="pt-6" style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}>
               <h3 className="text-2xl mb-3 text-center" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '2px', color: '#4A3728' }}>
+                TASYAKURAN
+              </h3>
+              <div className="text-center space-y-1" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
+                <p className="text-lg" style={{ letterSpacing: '1px' }}>JUMAT - MINGGU</p>
+                <p className="text-lg" style={{ letterSpacing: '1px' }}>22 - 24 MEI 2026</p>
+                <p className="mt-2" style={{ color: '#8B6F47' }}>Lokasi Acara</p>
+              </div>
+            </div>
+
+            <div className="pt-6" style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}>
+              <h3 className="text-2xl mb-3 text-center" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '2px', color: '#4A3728' }}>
                 AKAD NIKAH
               </h3>
               <div className="text-center space-y-1" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
-                <p className="text-lg" style={{ letterSpacing: '1px' }}>SENIN, 1 OKTOBER 2035</p>
-                <p>10:00 - 11:00 WIB</p>
-                <p className="mt-2" style={{ color: '#8B6F47' }}>Alun Alun Kidul</p>
-                <p style={{ color: '#8B6F47' }}>Yogyakarta</p>
+                <p className="text-lg" style={{ letterSpacing: '1px' }}>SENIN, 25 MEI 2026</p>
+                <p>09:00 - 10:30 WIB</p>
               </div>
-              <button className="mt-4 w-full py-2 px-4 rounded-full transition-all flex items-center justify-center gap-2 hover:shadow-md"
-                style={{
-                  fontFamily: 'Playfair Display, serif',
-                  letterSpacing: '1px',
-                  border: '1px solid rgba(139, 111, 71, 0.35)',
-                  color: '#6B5339',
-                  backgroundColor: 'transparent',
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(139, 111, 71, 0.06)'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
-                <MapPin size={16} />
-                LIHAT DI GOOGLE MAPS
-              </button>
             </div>
 
             <div className="pt-6" style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}>
@@ -377,12 +373,25 @@ export default function App() {
                 RESEPSI
               </h3>
               <div className="text-center space-y-1" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
-                <p className="text-lg" style={{ letterSpacing: '1px' }}>SENIN, 1 OKTOBER 2035</p>
-                <p>13:00 - 17:00 WIB</p>
-                <p className="mt-2" style={{ color: '#8B6F47' }}>Alun Alun Kidul</p>
-                <p style={{ color: '#8B6F47' }}>Yogyakarta</p>
+                <p className="text-lg" style={{ letterSpacing: '1px' }}>SENIN, 25 MEI 2026</p>
+                <p>11:00 - SELESAI</p>
               </div>
-              <button className="mt-4 w-full py-2 px-4 rounded-full transition-all flex items-center justify-center gap-2 hover:shadow-md"
+            </div>
+
+            <div className="pt-6" style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}>
+               <div className="rounded-2xl overflow-hidden shadow-md mb-4" style={{ height: '300px' }}>
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.518!2d109.550218!3d-7.351643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNfKwMjEnMDUuOSJTIDEwOcKwMzMnMDAuOCJF!5e0!3m2!1sen!2sid!4v1713690000000!5m2!1sen!2sid"
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <button className="w-full py-2 px-4 rounded-full transition-all flex items-center justify-center gap-2 hover:shadow-md"
+                onClick={() => window.open(`https://www.google.com/maps/place/7%C2%B021'05.9"S+109%C2%B033'00.8"E/@-7.351643,109.550218,17z/data=!3m1!4b1!4m4!3m3!8m2!3d-7.351643!4d109.550218`, '_blank')}
                 style={{
                   fontFamily: 'Playfair Display, serif',
                   letterSpacing: '1px',
@@ -393,7 +402,7 @@ export default function App() {
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(139, 111, 71, 0.06)'}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
                 <MapPin size={16} />
-                LIHAT DI GOOGLE MAPS
+                BUKA DI GOOGLE MAPS
               </button>
             </div>
           </div>
