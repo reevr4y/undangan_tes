@@ -164,6 +164,16 @@ export default function App() {
     '6.webp'
   ];
 
+  const [guestName, setGuestName] = useState('Bapak/Ibu/Saudara/i');
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const to = params.get('to');
+    if (to) {
+      setGuestName(to);
+    }
+  }, []);
+
   return (
     <>
       <AnimatePresence mode="wait">
@@ -193,8 +203,8 @@ export default function App() {
             />
 
             {/* Content overlay — positioned at the bottom */}
-            <div className="relative z-10 flex flex-col justify-end flex-1 pb-12 px-6 cover-content-animate">
-              <div className="text-center space-y-5">
+            <div className="relative z-10 flex flex-col justify-end flex-1 pb-16 px-6 cover-content-animate">
+              <div className="text-center space-y-6">
                 {/* THE WEDDING OF */}
                 <p className="tracking-[4px] text-sm"
                   style={{
@@ -226,11 +236,24 @@ export default function App() {
                   <div className="h-px w-12" style={{ backgroundColor: 'rgba(255,255,255,0.4)' }} />
                 </div>
 
+                {/* Guest Info Section (Formal) */}
+                <div className="py-4 space-y-2">
+                  <p className="text-xs uppercase tracking-widest text-white/70" style={{ fontFamily: 'Alice, serif' }}>
+                    Kepada Yth.
+                  </p>
+                  <p className="text-lg font-bold text-white" style={{ fontFamily: 'Cinzel, serif' }}>
+                    {guestName}
+                  </p>
+                  <p className="text-[10px] text-white/60 italic" style={{ fontFamily: 'Lora, serif' }}>
+                    *Mohon maaf apabila ada kesalahan penulisan nama/gelar
+                  </p>
+                </div>
+
                 {/* BUKA UNDANGAN Button */}
                 <div className="pt-2">
                   <button
                     onClick={() => setIsOpen(true)}
-                    className="inline-flex items-center gap-2.5 px-8 py-3 rounded-full transition-all duration-300 active:scale-95"
+                    className="inline-flex items-center gap-2.5 px-8 py-3 rounded-full transition-all duration-300 active:scale-95 shadow-lg"
                     style={{
                       fontFamily: 'Alice, serif',
                       fontSize: '0.85rem',
@@ -238,19 +261,10 @@ export default function App() {
                       border: '1px solid rgba(255,255,255,0.5)',
                       color: '#FFFFFF',
                       backgroundColor: 'rgba(255,255,255,0.1)',
-                      backdropFilter: 'blur(4px)',
-                      WebkitBackdropFilter: 'blur(4px)',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.25)';
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.7)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)';
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.5)';
+                      backdropFilter: 'blur(8px)',
+                      WebkitBackdropFilter: 'blur(8px)',
                     }}
                   >
-                    {/* Envelope icon */}
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                       <rect width="20" height="16" x="2" y="4" rx="2" />
                       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
