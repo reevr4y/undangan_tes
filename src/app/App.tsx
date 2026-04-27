@@ -129,13 +129,6 @@ export default function App() {
     ucapan: ''
   });
 
-  const storyRef = useRef(null);
-  const { scrollYProgress: storyProgress } = useScroll({
-    target: storyRef,
-    offset: ["start 80%", "end 80%"]
-  });
-  const lineScaleY = useSpring(storyProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
-
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -525,7 +518,6 @@ export default function App() {
                 {/* Our Story Section */}
                 <motion.section 
                   id="story"
-                  ref={storyRef}
                   className="rounded-[40px] md:rounded-t-[80px] p-6 md:p-8 glass-effect"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -540,14 +532,8 @@ export default function App() {
                   </div>
                   
                     <div className="space-y-12 relative">
-                      {/* Garis Dasar (Background) */}
-                      <div className="absolute left-[11px] top-3 bottom-6 w-px bg-[#8B6F47]/10" />
-                      
-                      {/* Garis Animasi (Progress) */}
-                      <motion.div 
-                        className="absolute left-[11px] top-3 bottom-6 w-px bg-[#8B6F47]/60"
-                        style={{ scaleY: lineScaleY, originY: 0 }}
-                      />
+                      {/* Garis Statis Solid */}
+                      <div className="absolute left-[11px] top-3 bottom-6 w-px bg-[#8B6F47]/30" />
                     
                     {[
                       {
