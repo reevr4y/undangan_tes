@@ -69,9 +69,14 @@ export default function App() {
   const fetchWishes = async () => {
     try {
       setIsLoadingWishes(true);
-      const response = await fetch(SCRIPT_URL);
+      // Tambahkan timestamp agar browser tidak mengambil data lama dari cache
+      const response = await fetch(`${SCRIPT_URL}?t=${Date.now()}`);
+      
+      if (!response.ok) throw new Error('Network response was not ok');
+      
       const data = await response.json();
-      setWishes(data);
+      console.log('Fetched wishes:', data);
+      setWishes(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching wishes:', error);
     } finally {
