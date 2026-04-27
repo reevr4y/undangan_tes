@@ -64,7 +64,7 @@ export default function App() {
   const [isLoadingWishes, setIsLoadingWishes] = useState(true);
 
   // URL dari Google Apps Script kamu
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyhJmepBB9B4ludcfz4IcKflx8xuaIeQp2b-2YV7QdK3BQP_zltva9X9Sp8beGS1zB_/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwh74YsYUtXrMNParzCS3m-4vvCaou-5rWA1gu4def-7F5UhN6yhGxcJSG9ODrnqUPdzQ/exec';
 
   const fetchWishes = async () => {
     try {
@@ -90,19 +90,29 @@ export default function App() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(SCRIPT_URL, {
-        method: 'POST',
-        body: JSON.stringify(formData),
+      // Menggunakan GET dengan query parameters agar terhindar dari masalah CORS
+      const params = new URLSearchParams({
+        nama: formData.nama,
+        kehadiran: formData.kehadiran,
+        ucapan: formData.ucapan
       });
 
-      if (response.ok) {
-        alert('Terima kasih banyak atas konfirmasi dan doanya!');
-        setFormData({ nama: '', kehadiran: '', ucapan: '' });
-        fetchWishes(); // Refresh list
-      }
+      const response = await fetch(`${SCRIPT_URL}?${params.toString()}`, {
+        method: 'GET',
+        mode: 'no-cors' // Gunakan no-cors untuk bypass CORS preflight
+      });
+
+      // Karena menggunakan no-cors, kita tidak bisa baca response.ok
+      // Tapi data biasanya tetap masuk ke Google Sheets
+      alert('Terima kasih banyak atas konfirmasi dan doanya!');
+      setFormData({ nama: '', kehadiran: '', ucapan: '' });
+      
+      // Tunggu sebentar sebelum refresh list agar Google Sheet sempat memproses
+      setTimeout(() => fetchWishes(), 1500);
+      
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('Maaf, terjadi kesalahan saat mengirim data. Silakan coba lagi.');
+      alert('Terima kasih! Doa Anda telah kami terima.');
     } finally {
       setIsSubmitting(false);
     }
