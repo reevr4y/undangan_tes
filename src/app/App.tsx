@@ -132,7 +132,7 @@ export default function App() {
   const storyRef = useRef(null);
   const { scrollYProgress: storyProgress } = useScroll({
     target: storyRef,
-    offset: ["start 70%", "end 50%"]
+    offset: ["start 80%", "end 80%"]
   });
   const lineScaleY = useSpring(storyProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
