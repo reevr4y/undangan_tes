@@ -648,7 +648,7 @@ export default function App() {
                   <div className="space-y-8">
                     {[
                       { title: 'TASYAKURAN', details: ['SABTU - MINGGU', '23 - 24 MEI 2026'], font: 'Lora' },
-                      { title: 'AKAD NIKAH', details: ['SENIN, 25 MEI 2026', '09:00 - 10:30 WIB'], font: 'Playfair Display' },
+                      { title: 'AKAD NIKAH', details: ['SENIN, 25 MEI 2026', '10:00 - SELESAI'], font: 'Playfair Display' },
                       { title: 'RESEPSI', details: ['SENIN, 25 MEI 2026', '11:00 - SELESAI'], font: 'Playfair Display' }
                     ].map((event, idx) => (
                       <motion.div 
