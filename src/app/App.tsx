@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { MapPin, Music } from 'lucide-react';
+import { motion, AnimatePresence, useScroll, useSpring, useTransform } from 'motion/react';
+import { MapPin, Music, Home, Users, Image as ImageIcon, Gift, MessageSquareQuote } from 'lucide-react';
 import Masonry from 'react-responsive-masonry';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import { FloralIcon } from './components/FloralIcon';
@@ -16,6 +16,10 @@ export default function App() {
 
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  
+  // Overall scroll progress for global parallax
+  const { scrollYProgress: globalScroll } = useScroll();
+  const backgroundY = useTransform(globalScroll, [0, 1], ["0%", "20%"]);
 
   const weddingDate = new Date('2026-05-25T10:00:00');
 
@@ -57,8 +61,23 @@ export default function App() {
 
   const [formData, setFormData] = useState({
     nama: '',
-    kehadiran: ''
+    kehadiran: '',
+    ucapan: ''
   });
+
+  const storyRef = useRef(null);
+  const { scrollYProgress: storyProgress } = useScroll({
+    target: storyRef,
+    offset: ["start 80%", "end 20%"]
+  });
+  const lineScaleY = useSpring(storyProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,13 +85,25 @@ export default function App() {
     alert('Terima kasih banyak atas konfirmasi Anda. Semoga kita bisa bertemu di hari bahagia kami!');
   };
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  };
+
   const galleryPhotos = [
-    '1.jpeg',
-    '2.jpeg',
-    '3.jpeg',
-    '4.jpeg',
-    '5.jpeg',
-    '6.jpeg'
+    '1.webp',
+    '2.webp',
+    '3.webp',
+    '4.webp',
+    '5.webp',
+    '6.webp'
   ];
 
   return (
@@ -93,7 +124,7 @@ export default function App() {
             {/* Full-screen background image */}
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat cover-bg-animate"
-              style={{ backgroundImage: 'url(background.png)' }}
+              style={{ backgroundImage: 'url(background.webp)' }}
             />
 
             {/* Gradient overlay — transparent top, dark bottom */}
@@ -120,10 +151,10 @@ export default function App() {
                 <div className="flex flex-col items-center">
                   <span className="block"
                     style={{
-                      fontFamily: 'Great Vibes, cursive',
-                      fontSize: 'clamp(2.8rem, 10vw, 4.5rem)',
+                      fontFamily: 'Cinzel Decorative, serif',
+                      fontSize: 'clamp(2.5rem, 8vw, 4rem)',
                       color: '#FFFFFF',
-                      lineHeight: '1.1',
+                      lineHeight: '1.2',
                       textShadow: '0 2px 20px rgba(0,0,0,0.4)',
                     }}>
                     Agung & Mita
@@ -149,8 +180,8 @@ export default function App() {
                       border: '1px solid rgba(255,255,255,0.5)',
                       color: '#FFFFFF',
                       backgroundColor: 'rgba(255,255,255,0.1)',
-                      backdropFilter: 'blur(10px)',
-                      WebkitBackdropFilter: 'blur(10px)',
+                      backdropFilter: 'blur(4px)',
+                      WebkitBackdropFilter: 'blur(4px)',
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.25)';
@@ -173,31 +204,38 @@ export default function App() {
             </div>
           </motion.div>
         ) : (
-          <motion.div
-            key="content"
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ 
-              opacity: 1,
-              scale: 1,
-              transition: { 
-                duration: 1, 
-                ease: [0.22, 1, 0.36, 1],
-                delay: 0.2
-              }
-            }}
-            className="min-h-screen relative overflow-hidden"
-            style={{ background: 'linear-gradient(180deg, #F5EDE3 0%, #EDE4D8 20%, #E8DDD0 50%, #EDE4D8 80%, #F0E6DA 100%)' }}
-          >
-            {/* Soft warm ambient glows */}
-            <div className="absolute inset-0">
-              <div className="absolute top-40 left-20 w-96 h-96 rounded-full blur-3xl animate-pulse" style={{ background: 'rgba(184, 157, 120, 0.06)' }}></div>
-              <div className="absolute top-96 right-10 w-80 h-80 rounded-full blur-3xl animate-pulse" style={{ background: 'rgba(168, 140, 107, 0.06)', animationDelay: '1s' }}></div>
-              <div className="absolute bottom-40 left-1/3 w-72 h-72 rounded-full blur-3xl animate-pulse" style={{ background: 'rgba(160, 135, 100, 0.06)', animationDelay: '2s' }}></div>
-            </div>
+            <motion.div 
+              key="content"
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ 
+                opacity: 1,
+                scale: 1,
+                transition: { 
+                  duration: 1, 
+                  ease: [0.22, 1, 0.36, 1],
+                  delay: 0.2
+                }
+              }}
+              className="min-h-screen relative overflow-hidden"
+              style={{ background: 'linear-gradient(180deg, #F5EDE3 0%, #EDE4D8 20%, #E8DDD0 50%, #EDE4D8 80%, #F0E6DA 100%)' }}
+            >
+              {/* Soft warm ambient glows with parallax */}
+              <motion.div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ y: backgroundY }}>
+                <div className="absolute top-40 left-20 w-96 h-96 rounded-full blur-3xl" style={{ background: 'rgba(184, 157, 120, 0.06)' }}></div>
+                <div className="absolute top-96 right-10 w-80 h-80 rounded-full blur-3xl" style={{ background: 'rgba(168, 140, 107, 0.06)' }}></div>
+                <div className="absolute bottom-40 left-1/3 w-72 h-72 rounded-full blur-3xl" style={{ background: 'rgba(160, 135, 100, 0.06)' }}></div>
+              </motion.div>
 
             <div className="relative z-10">
               {/* Video Hero Section */}
-              <section className="hero-video-section animate-reveal">
+              <motion.section 
+                id="home"
+                className="hero-video-section"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 1 }}
+              >
                 <video
                   autoPlay
                   loop
@@ -271,25 +309,29 @@ export default function App() {
                         <p className="text-[#6B5339] text-sm tracking-[2px]" style={{ fontFamily: 'Alice, serif' }}>
                           SENIN, 25 MEI 2026
                         </p>
+                        <p className="text-[#8B6F47] text-[10px] mt-2 tracking-[1px] font-medium" style={{ fontFamily: 'Lora, serif' }}>
+                          Jl Raya Kecepit, Siluwing RT04/03,<br/>Kec Punggelan, Kab Banjarnegara
+                        </p>
                       </motion.div>
                     </div>
                   </motion.div>
                 </div>
-              </section>
+              </motion.section>
 
-              <div className="max-w-2xl mx-auto px-4 py-12 space-y-16">
+              <div className="max-w-2xl mx-auto px-4 py-8 md:py-12 space-y-12 md:space-y-16">
                 {/* Quote Section */}
-                <section className="animate-reveal delay-1">
+                <motion.section 
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, margin: "-100px" }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                >
                   <div 
-                    className="overflow-hidden backdrop-blur-sm"
-                    style={{ 
-                      borderRadius: '80px 80px 40px 40px',
-                      border: '1px solid rgba(139, 111, 71, 0.2)', 
-                      backgroundColor: 'rgba(245, 237, 227, 0.5)' 
-                    }}
+                    className="overflow-hidden glass-effect"
+                    style={{ borderRadius: '60px 60px 30px 30px' }}
                   >
                     {/* Top Content: Verse */}
-                    <div className="p-8 pb-4 text-center space-y-6">
+                    <div className="p-6 md:p-8 pb-4 text-center space-y-6">
                       <div className="flex justify-center">
                         <FloralIcon />
                       </div>
@@ -311,30 +353,58 @@ export default function App() {
                     <div className="px-6 pb-6">
                       <div className="w-full">
                         <img 
-                          src="pasangan.jpeg" 
+                          src="pasangan1.png" 
                           alt="Pasangan" 
                           className="w-full h-full object-cover"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </div>
                     </div>
                   </div>
-                </section>
+                </motion.section>
 
                 {/* Mempelai Section */}
-                <section className="space-y-10 animate-reveal delay-2">
-                  <div className="p-8 text-center animate-reveal">
+                <motion.section 
+                  id="couple"
+                  className="space-y-10"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.1 }}
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: { staggerChildren: 0.4 }
+                    }
+                  }}
+                >
+                  <motion.div 
+                    className="p-8 text-center"
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+                    }}
+                  >
                     <p className="text-base italic mb-4 font-medium" style={{ fontFamily: 'Lora, serif', color: '#8B6F47' }}>Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
                     <p className="px-6 text-sm leading-relaxed" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
                       Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:
                     </p>
-                  </div>
+                  </motion.div>
 
-                  <div className="p-8 text-center backdrop-blur-sm animate-left opacity-0"
-                    style={{ 
-                      borderRadius: '80px 80px 40px 40px',
-                      border: '1px solid rgba(139, 111, 71, 0.2)', 
-                      backgroundColor: 'rgba(245, 237, 227, 0.5)' 
+
+                  <motion.div 
+                    className="p-6 md:p-8 text-center glass-effect"
+                    variants={{
+                      hidden: { opacity: 0, scale: 0.95, y: 30 },
+                      visible: { 
+                        opacity: 1, 
+                        scale: 1, 
+                        y: 0,
+                        transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } 
+                      }
                     }}
+                    style={{ borderRadius: '60px 60px 30px 30px' }}
                   >
                     <div className="flex justify-center mb-6">
                       <FloralIcon />
@@ -344,27 +414,41 @@ export default function App() {
                         src="cowo.png"
                         alt="Agung Sucipto"
                         className="w-full h-auto block"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <h2 className="text-4xl mb-3" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
-                      Agung Sucipto
+                      Agung Sucito
                     </h2>
                     <div className="h-px w-16 bg-[#8B6F47]/30 mx-auto mb-4" />
                     <p className="px-4 text-sm font-medium leading-relaxed" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
-                      Putra dari Alm. Bpk. Budi Santosa<br/>& Ibu Turiyah
+                      Putra dari Bpk. Budi Santosa (Alm)<br/>& Ibu Turiyah
                     </p>
-                  </div>
+                  </motion.div>
 
-                  <div className="text-center">
-                    <span className="text-6xl" style={{ fontFamily: 'Great Vibes, cursive', color: '#8B6F47' }}>&</span>
-                  </div>
-
-                  <div className="p-8 text-center backdrop-blur-sm animate-right opacity-0"
-                    style={{ 
-                      borderRadius: '80px 80px 40px 40px',
-                      border: '1px solid rgba(139, 111, 71, 0.2)', 
-                      backgroundColor: 'rgba(245, 237, 227, 0.5)' 
+                  <motion.div 
+                    className="text-center"
+                    variants={{
+                      hidden: { opacity: 0, scale: 0.5 },
+                      visible: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 100 } }
                     }}
+                  >
+                    <span className="text-6xl" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#8B6F47' }}>&</span>
+                  </motion.div>
+
+                  <motion.div 
+                    className="p-6 md:p-8 text-center glass-effect"
+                    variants={{
+                      hidden: { opacity: 0, scale: 0.95, y: 30 },
+                      visible: { 
+                        opacity: 1, 
+                        scale: 1, 
+                        y: 0,
+                        transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } 
+                      }
+                    }}
+                    style={{ borderRadius: '60px 60px 30px 30px' }}
                   >
                     <div className="flex justify-center mb-6">
                       <FloralIcon />
@@ -374,6 +458,8 @@ export default function App() {
                         src="cewe.png"
                         alt="Mita Handya Waltami"
                         className="w-full h-auto block"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <h2 className="text-4xl mb-3" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
@@ -381,40 +467,125 @@ export default function App() {
                     </h2>
                     <div className="h-px w-16 bg-[#8B6F47]/30 mx-auto mb-4" />
                     <p className="px-4 text-sm font-medium leading-relaxed" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
-                      Putri dari Bpk. Mugi<br/>& Ibu Samiyah
+                      Putri dari Bpk. Ugi Prasetyo<br/>& Ibu Samiyah
                     </p>
+                  </motion.div>
+                </motion.section>
+
+
+
+                {/* Our Story Section */}
+                <motion.section 
+                  id="story"
+                  ref={storyRef}
+                  className="rounded-[40px] md:rounded-t-[80px] p-6 md:p-8 glass-effect"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.1 }}
+                  transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="text-center mb-8">
+                    <FloralIcon />
+                    <h3 className="text-4xl" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
+                      Our Story
+                    </h3>
                   </div>
-                </section>
-
-
+                  
+                  <div className="space-y-12 relative">
+                    <motion.div 
+                      className="absolute left-[11px] top-2 bottom-2 w-px bg-[#8B6F47]/20"
+                      style={{ scaleY: lineScaleY, originY: 0 }}
+                    />
+                    
+                    {[
+                      {
+                        title: "Awal Kenal",
+                        date: "November 2023",
+                        content: "Awal kenal sama Agung itu bulan November 2023 di kenalin sama sahabat aku. Kita sepakat mau serius tapi kita LDR Jakarta sama Banjarnegara, jadi jarang ketemu. Sampai akhirnya tahun 2025 Agung memutuskan kerja di Banjarnegara agar bisa lebih dekat."
+                      },
+                      {
+                        title: "Tunangan",
+                        date: "8 Februari 2026",
+                        content: "Kita memutuskan melangkah ke jenjang yang lebih serius pada tanggal 8 Februari 2026. Pertemuan kedua keluarga besar dilaksanakan dan alhamdulillah semuanya berjalan dengan lancar."
+                      },
+                      {
+                        title: "Menikah",
+                        date: "25 Mei 2026",
+                        content: "Alhamdulillah waktu yang kita nanti-nantikan tiba. Semoga kita menjadi keluarga yang sakinah mawaddah warahmah sampai tua nantinya bersama keluarga kecil kita. Mohon doanya teman-teman semua agar acaranya berjalan dengan lancar, Amin."
+                      }
+                    ].map((item, idx) => (
+                      <motion.div 
+                        key={idx}
+                        className="relative pl-10"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: false, amount: 0.5 }}
+                        transition={{ duration: 0.8, delay: idx * 0.2 }}
+                      >
+                        <div className="absolute left-0 top-1 w-6 h-6 rounded-full glass-effect flex items-center justify-center border border-[#8B6F47]/30">
+                          <motion.div 
+                            className="w-2 h-2 rounded-full bg-[#8B6F47]"
+                            initial={{ scale: 0 }}
+                            whileInView={{ scale: 1 }}
+                            transition={{ delay: 0.4 + (idx * 0.2), type: "spring" }}
+                          />
+                        </div>
+                        <h4 className="text-lg font-bold mb-2" style={{ fontFamily: 'Alice, serif', color: '#4A3728' }}>{item.title}</h4>
+                        <p className="text-xs font-bold mb-2 uppercase tracking-wider" style={{ fontFamily: 'Lora, serif', color: '#8B6F47' }}>{item.date}</p>
+                        <p className="text-sm leading-relaxed" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>{item.content}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.section>
 
                 {/* Gallery Section */}
-                <section className="rounded-t-[80px] p-8 backdrop-blur-sm animate-reveal delay-4"
-                  style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(245, 237, 227, 0.5)' }}>
-                  <FloralIcon />
-                  <h3 className="text-4xl mb-3 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
-                    Our Moments
-                  </h3>
-                  <p className="text-center mb-8 font-bold" style={{ fontFamily: 'Lora, serif', letterSpacing: '2px', color: '#8B6F47', fontSize: '0.85rem' }}>
-                    PRE-WEDDING GALLERY
-                  </p>
+                <motion.section 
+                  id="gallery"
+                  className="rounded-[40px] md:rounded-t-[80px] p-6 md:p-8 glass-effect"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.2, margin: "-100px" }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="text-center mb-8">
+                    <FloralIcon />
+                    <h3 className="text-4xl mb-2" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
+                      Our Moments
+                    </h3>
+                    <p className="font-bold" style={{ fontFamily: 'Lora, serif', letterSpacing: '2px', color: '#8B6F47', fontSize: '0.85rem' }}>
+                      PRE-WEDDING GALLERY
+                    </p>
+                  </div>
                   <Masonry columnsCount={2} gutter="12px">
                     {galleryPhotos.map((photo, idx) => (
-                      <div key={idx} className="rounded-lg overflow-hidden hover-scale"
-                        style={{ border: '1px solid rgba(139, 111, 71, 0.2)' }}>
+                      <motion.div 
+                        key={idx} 
+                        className="rounded-lg overflow-hidden hover-scale shadow-sm"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: false, amount: 0.3 }}
+                        transition={{ duration: 0.6, delay: (idx % 2) * 0.2 }}
+                        style={{ border: '1px solid rgba(139, 111, 71, 0.2)' }}
+                      >
                         <ImageWithFallback
                           src={photo}
                           alt={`Gallery photo ${idx + 1}`}
                           className="w-full h-auto object-cover"
                         />
-                      </div>
+                      </motion.div>
                     ))}
                   </Masonry>
-                </section>
+                </motion.section>
 
                 {/* Event & Countdown Section */}
-                <section className="rounded-t-[80px] p-6 backdrop-blur-sm animate-reveal delay-5"
-                  style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(245, 237, 227, 0.5)' }}>
+                <motion.section 
+                  id="event"
+                  className="rounded-[40px] md:rounded-t-[80px] p-6 glass-effect"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.2, margin: "-100px" }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                >
                   <FloralIcon />
                   <div className="text-center mb-10">
                     <div className="grid grid-cols-4 gap-2 max-w-sm mx-auto">
@@ -424,8 +595,7 @@ export default function App() {
                         { value: countdown.minutes, label: 'MINS' },
                         { value: countdown.seconds, label: 'SECS' }
                       ].map((item, idx) => (
-                        <div key={idx} className="rounded-2xl py-3 px-1 backdrop-blur-sm"
-                          style={{ border: '1px solid rgba(139, 111, 71, 0.15)', backgroundColor: 'rgba(237, 228, 216, 0.6)' }}>
+                        <div key={idx} className="rounded-2xl py-3 px-1 glass-effect">
                           <div className="text-2xl font-bold mb-1" style={{ fontFamily: 'Alice, serif', color: '#4A3728' }}>
                             {String(item.value).padStart(2, '0')}
                           </div>
@@ -437,38 +607,36 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div className="space-y-10">
-                    <div className="pt-6" style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}>
-                      <h3 className="text-xl mb-4 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', letterSpacing: '2px', color: '#4A3728' }}>
-                        TASYAKURAN
-                      </h3>
-                      <div className="text-center space-y-1" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
-                        <p className="text-sm font-medium" style={{ letterSpacing: '1px' }}>JUMAT - MINGGU</p>
-                        <p className="text-sm font-medium" style={{ letterSpacing: '1px' }}>22 - 24 MEI 2026</p>
-                      </div>
-                    </div>
+                  <div className="space-y-8">
+                    {[
+                      { title: 'TASYAKURAN', details: ['SABTU - MINGGU', '23 - 24 MEI 2026'], font: 'Lora' },
+                      { title: 'AKAD NIKAH', details: ['SENIN, 25 MEI 2026', '09:00 - 10:30 WIB'], font: 'Playfair Display' },
+                      { title: 'RESEPSI', details: ['SENIN, 25 MEI 2026', '11:00 - SELESAI'], font: 'Playfair Display' }
+                    ].map((event, idx) => (
+                      <motion.div 
+                        key={idx}
+                        className="pt-6" 
+                        style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: false }}
+                        transition={{ duration: 0.8, delay: idx * 0.2 }}
+                      >
+                        <h3 className="text-xl mb-4 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', letterSpacing: '2px', color: '#4A3728' }}>
+                          {event.title}
+                        </h3>
+                        <div className="text-center space-y-1" style={{ fontFamily: `${event.font}, serif`, color: '#6B5339' }}>
+                          {event.details.map((detail, dIdx) => (
+                            <p key={dIdx} className="text-sm font-medium" style={{ letterSpacing: '1px' }}>{detail}</p>
+                          ))}
+                        </div>
+                      </motion.div>
+                    ))}
 
                     <div className="pt-6" style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}>
-                      <h3 className="text-xl mb-4 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', letterSpacing: '2px', color: '#4A3728' }}>
-                        AKAD NIKAH
-                      </h3>
-                      <div className="text-center space-y-1" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
-                        <p className="text-sm font-medium" style={{ letterSpacing: '1px' }}>SENIN, 25 MEI 2026</p>
-                        <p className="text-sm">09:00 - 10:30 WIB</p>
-                      </div>
-                    </div>
-
-                    <div className="pt-6" style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}>
-                      <h3 className="text-xl mb-4 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', letterSpacing: '2px', color: '#4A3728' }}>
-                        RESEPSI
-                      </h3>
-                      <div className="text-center space-y-1" style={{ fontFamily: 'Playfair Display, serif', color: '#6B5339' }}>
-                        <p className="text-sm font-medium" style={{ letterSpacing: '1px' }}>SENIN, 25 MEI 2026</p>
-                        <p className="text-sm">11:00 - SELESAI</p>
-                      </div>
-                    </div>
-
-                    <div className="pt-6" style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}>
+                       <p className="text-center text-sm mb-6 font-medium leading-relaxed" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
+                         Jl Raya Kecepit, Siluwing RT04/03,<br/>Kec Punggelan, Kab Banjarnegara
+                       </p>
                        <div className="rounded-2xl overflow-hidden shadow-md mb-4" style={{ height: '300px' }}>
                         <iframe 
                           src="https://maps.google.com/maps?q=-7.351643,109.550218&hl=id&z=17&output=embed"
@@ -496,139 +664,215 @@ export default function App() {
                       </button>
                     </div>
                   </div>
-                </section>
+                </motion.section>
 
-                {/* RSVP Section */}
-                <section className="rounded-t-[80px] p-8 backdrop-blur-sm"
-                  style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(245, 237, 227, 0.5)' }}>
-                  <FloralIcon />
-                  <h3 className="text-4xl mb-6 text-center" style={{ fontFamily: 'Alice, serif', color: '#4A3728' }}>
-                    Konfirmasi Kehadiran
-                  </h3>
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                      <label className="block mb-2 font-bold" style={{ fontFamily: 'Alice, serif', letterSpacing: '1px', color: '#6B5339' }}>
-                        NAMA
+
+                {/* Tanda Kasih Section */}
+                <motion.section 
+                  id="gift"
+                  className="rounded-[40px] md:rounded-t-[80px] p-6 md:p-8 glass-effect"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.2, margin: "-100px" }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="text-center mb-4">
+                    <FloralIcon />
+                    <h3 className="text-4xl mb-4" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
+                      Wedding Gift
+                    </h3>
+                  </div>
+                  <motion.p 
+                    className="text-center mb-10 text-sm leading-relaxed px-4" 
+                    style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    Doa restu Anda merupakan karunia terindah bagi kami. Namun jika Anda bermaksud memberikan tanda kasih, Anda dapat mengirimkannya melalui:
+                  </motion.p>
+
+                  <div className="space-y-6">
+                    {/* ATM Card Design */}
+                    <motion.div 
+                      className="relative w-full aspect-[1.6/1] rounded-xl overflow-hidden p-4 md:p-6 shadow-xl"
+                      style={{ 
+                        background: 'linear-gradient(135deg, #4A3728 0%, #2D1F16 100%)',
+                        border: '1px solid rgba(139, 111, 71, 0.3)'
+                      }}
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      {/* Decorative elements */}
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-[#8B6F47]/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+                      <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#8B6F47]/10 rounded-full blur-2xl -ml-12 -mb-12"></div>
+                      
+                      <div className="relative h-full flex flex-col justify-between">
+                        <div className="flex justify-between items-start">
+                          <div className="text-white/40 text-xs tracking-widest font-bold" style={{ fontFamily: 'Alice, serif' }}>WEDDING GIFT</div>
+                          <div className="text-white text-xl italic font-serif tracking-tighter">BRI</div>
+                        </div>
+
+                        {/* Card Chip */}
+                        <div className="w-10 h-7 rounded bg-gradient-to-br from-[#D4AF37] to-[#8B6F47] opacity-60 mb-2"></div>
+
+                        <div className="space-y-1">
+                          <div className="text-white text-2xl tracking-[4px] font-mono" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
+                            6622 0103 2653 0
+                          </div>
+                          <div className="flex justify-between items-end pt-2">
+                            <div>
+                              <div className="text-white/40 text-[8px] uppercase tracking-widest mb-1" style={{ fontFamily: 'Lora, serif' }}>Account Holder</div>
+                              <div className="text-white text-sm tracking-wider font-medium" style={{ fontFamily: 'Alice, serif' }}>MITA HANDYA WALTAMI</div>
+                            </div>
+                            <button 
+                              onClick={() => {
+                                navigator.clipboard.writeText('6622010326530');
+                                alert('Nomor rekening BRI berhasil disalin!');
+                              }}
+                              className="px-4 py-1.5 rounded-lg text-[10px] font-bold transition-all bg-white/10 border border-white/20 text-white hover:bg-white/20"
+                            >
+                              SALIN
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.section>
+
+                {/* RSVP & Wishes Section */}
+                <motion.section 
+                  id="rsvp"
+                  className="rounded-[60px] p-8 relative overflow-hidden"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.2, margin: "-100px" }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                  style={{ 
+                    background: 'linear-gradient(165deg, rgba(255, 255, 255, 0.7) 0%, rgba(245, 237, 227, 0.6) 100%)',
+                    boxShadow: '0 10px 40px -10px rgba(74, 55, 40, 0.1)',
+                    border: '1px solid rgba(139, 111, 71, 0.15)'
+                  }}
+                >
+                  {/* Decorative corner element */}
+                  <div className="absolute -top-10 -right-10 w-32 h-32 opacity-10 rotate-12">
+                    <FloralIcon />
+                  </div>
+
+                  <div className="text-center mb-8 relative z-10">
+                    <FloralIcon />
+                    <h3 className="text-4xl mb-2" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
+                      RSVP
+                    </h3>
+                    <p className="text-xs uppercase tracking-[3px] font-bold" style={{ fontFamily: 'Lora, serif', color: '#8B6F47' }}>
+                      & DOA RESTU
+                    </p>
+                    <p className="mt-4 text-[11px] italic" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
+                      Kehadiran Bapak/Ibu/Saudara/i adalah kado terindah bagi kami
+                    </p>
+                  </div>
+
+                  <motion.form 
+                    onSubmit={handleSubmit} 
+                    className="space-y-5 relative z-10"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: false }}
+                    variants={{
+                      hidden: { opacity: 0 },
+                      visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
+                    }}
+                  >
+                    <motion.div variants={itemVariants}>
+                      <label className="block mb-2 text-[10px] font-bold tracking-widest uppercase" style={{ fontFamily: 'Alice, serif', color: '#6B5339' }}>
+                        Nama Bapak/Ibu/Saudara/i
                       </label>
                       <input
                         type="text"
                         required
                         value={formData.nama}
                         onChange={(e) => setFormData({ ...formData, nama: e.target.value })}
-                        className="w-full rounded-lg px-4 py-3 focus:outline-none text-sm"
-                        placeholder="Masukkan nama Anda"
+                        className="w-full rounded-xl px-4 py-3.5 focus:outline-none text-sm transition-all shadow-sm"
+                        placeholder="Tuliskan nama Anda di sini"
                         style={{
                           fontFamily: 'Lora, serif',
-                          backgroundColor: 'rgba(139, 111, 71, 0.05)',
-                          border: '1px solid rgba(139, 111, 71, 0.25)',
+                          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                          border: '1px solid rgba(139, 111, 71, 0.2)',
                           color: '#4A3728',
                         }}
                       />
-                    </div>
-                    <div>
-                      <label className="block mb-2 font-bold" style={{ fontFamily: 'Alice, serif', letterSpacing: '1px', color: '#6B5339' }}>
-                        KEHADIRAN
+                    </motion.div>
+
+                    <motion.div variants={itemVariants}>
+                      <label className="block mb-2 text-[10px] font-bold tracking-widest uppercase" style={{ fontFamily: 'Alice, serif', color: '#6B5339' }}>
+                        Konfirmasi Kehadiran
                       </label>
                       <select
                         required
                         value={formData.kehadiran}
                         onChange={(e) => setFormData({ ...formData, kehadiran: e.target.value })}
-                        className="w-full rounded-lg px-4 py-3 focus:outline-none text-sm"
+                        className="w-full rounded-xl px-4 py-3.5 focus:outline-none text-sm transition-all shadow-sm"
                         style={{
                           fontFamily: 'Lora, serif',
-                          backgroundColor: 'rgba(139, 111, 71, 0.05)',
-                          border: '1px solid rgba(139, 111, 71, 0.25)',
+                          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                          border: '1px solid rgba(139, 111, 71, 0.2)',
                           color: '#4A3728',
                         }}
                       >
-                        <option value="" style={{ backgroundColor: '#F5EDE3' }}>Pilih kehadiran</option>
-                        <option value="hadir" style={{ backgroundColor: '#F5EDE3' }}>Hadir</option>
-                        <option value="tidak-hadir" style={{ backgroundColor: '#F5EDE3' }}>Tidak Hadir</option>
+                        <option value="" style={{ backgroundColor: '#F5EDE3' }}>Konfirmasi kehadiran Anda</option>
+                        <option value="hadir" style={{ backgroundColor: '#F5EDE3' }}>Insya Allah, Dapat Hadir</option>
+                        <option value="tidak-hadir" style={{ backgroundColor: '#F5EDE3' }}>Mohon Maaf, Belum Bisa Hadir</option>
                       </select>
-                    </div>
-                    <button
+                    </motion.div>
+
+                    <motion.div variants={itemVariants}>
+                      <label className="block mb-2 text-[10px] font-bold tracking-widest uppercase" style={{ fontFamily: 'Alice, serif', color: '#6B5339' }}>
+                        Pesan & Doa Restu
+                      </label>
+                      <textarea
+                        required
+                        rows={4}
+                        value={formData.ucapan}
+                        onChange={(e) => setFormData({ ...formData, ucapan: e.target.value })}
+                        className="w-full rounded-xl px-4 py-3.5 focus:outline-none text-sm transition-all shadow-sm resize-none"
+                        placeholder="Berikan pesan atau doa restu Bapak/Ibu/Saudara/i..."
+                        style={{
+                          fontFamily: 'Lora, serif',
+                          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                          border: '1px solid rgba(139, 111, 71, 0.2)',
+                          color: '#4A3728',
+                        }}
+                      />
+                    </motion.div>
+
+                    <motion.button
+                      variants={itemVariants}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.98 }}
                       type="submit"
-                      className="w-full py-3 rounded-full transition-all hover:shadow-lg font-bold"
+                      className="w-full py-4 rounded-full transition-all font-bold mt-4 shadow-md"
                       style={{
-                        fontFamily: 'Alice, serif',
+                        fontFamily: 'Cinzel Decorative, serif',
+                        fontSize: '0.9rem',
                         letterSpacing: '2px',
-                        border: '1px solid rgba(139, 111, 71, 0.35)',
-                        color: '#6B5339',
-                        backgroundColor: 'rgba(139, 111, 71, 0.08)',
+                        background: 'linear-gradient(135deg, #8B6F47 0%, #6B5339 100%)',
+                        color: '#FFFFFF',
                       }}
-                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(139, 111, 71, 0.15)'}
-                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(139, 111, 71, 0.08)'}
                     >
-                      KIRIM KONFIRMASI
-                    </button>
-                  </form>
-                </section>
-
-                {/* Wedding Gift Section */}
-                <section className="rounded-t-[80px] p-8 backdrop-blur-sm animate-reveal"
-                  style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(245, 237, 227, 0.5)' }}>
-                  <FloralIcon />
-                  <h3 className="text-4xl mb-4 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
-                    Wedding Gift
-                  </h3>
-                  <p className="text-center mb-10 text-sm leading-relaxed px-4" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
-                    Doa restu Anda merupakan karunia terindah bagi kami. Namun jika Anda bermaksud memberikan tanda kasih, Anda dapat mengirimkannya melalui:
-                  </p>
-
-                  <div className="space-y-6">
-                    {/* Bank 1 */}
-                    <div className="p-6 rounded-2xl text-center relative overflow-hidden"
-                      style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(255, 255, 255, 0.3)' }}>
-                      <div className="text-lg font-bold mb-2" style={{ fontFamily: 'Alice, serif', color: '#4A3728', letterSpacing: '2px' }}>BCA</div>
-                      <div className="text-xl mb-1 font-medium" style={{ fontFamily: 'Alice, serif', color: '#8B6F47' }}>1234567890</div>
-                      <div className="text-sm mb-4" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>a.n Agung Sucipto</div>
-                      <button 
-                        onClick={() => {
-                          navigator.clipboard.writeText('1234567890');
-                          alert('Nomor rekening BCA berhasil disalin!');
-                        }}
-                        className="inline-flex items-center gap-2 px-6 py-2 rounded-full text-xs font-bold transition-all"
-                        style={{
-                          border: '1px solid rgba(139, 111, 71, 0.4)',
-                          color: '#8B6F47',
-                          backgroundColor: 'transparent'
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(139, 111, 71, 0.1)'}
-                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
-                      >
-                        SALIN REKENING
-                      </button>
-                    </div>
-
-                    {/* Bank 2 */}
-                    <div className="p-6 rounded-2xl text-center relative overflow-hidden"
-                      style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(255, 255, 255, 0.3)' }}>
-                      <div className="text-lg font-bold mb-2" style={{ fontFamily: 'Alice, serif', color: '#4A3728', letterSpacing: '2px' }}>BRI</div>
-                      <div className="text-xl mb-1 font-medium" style={{ fontFamily: 'Alice, serif', color: '#8B6F47' }}>0987654321</div>
-                      <div className="text-sm mb-4" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>a.n Mita Handya Waltami</div>
-                      <button 
-                        onClick={() => {
-                          navigator.clipboard.writeText('0987654321');
-                          alert('Nomor rekening BRI berhasil disalin!');
-                        }}
-                        className="inline-flex items-center gap-2 px-6 py-2 rounded-full text-xs font-bold transition-all"
-                        style={{
-                          border: '1px solid rgba(139, 111, 71, 0.4)',
-                          color: '#8B6F47',
-                          backgroundColor: 'transparent'
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(139, 111, 71, 0.1)'}
-                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
-                      >
-                        SALIN REKENING
-                      </button>
-                    </div>
-                  </div>
-                </section>
+                      KIRIM DOA & RESTU
+                    </motion.button>
+                  </motion.form>
+                </motion.section>
 
                 {/* Footer / Closing */}
-                <section className="rounded-t-[80px] p-8 text-center backdrop-blur-sm"
-                  style={{ border: '1px solid rgba(139, 111, 71, 0.2)', backgroundColor: 'rgba(245, 237, 227, 0.5)' }}>
+                <motion.section 
+                  className="rounded-t-[80px] p-8 text-center glass-effect"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.2, margin: "-100px" }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                >
                   <FloralIcon />
                   <p className="text-lg leading-relaxed mb-6" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
                     Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kami.
@@ -640,38 +884,84 @@ export default function App() {
                   <div className="text-5xl" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
                     A & M
                   </div>
-                </section>
+                </motion.section>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Music Player / Rotating Disc */}
-      <div className="fixed top-6 right-6 z-50">
-        <button
-          onClick={toggleMusic}
-          className={`relative w-16 h-16 rounded-full overflow-hidden shadow-2xl transition-transform active:scale-95 ${
-            isPlaying ? 'animate-spin-slow' : 'paused'
-          }`}
-        >
-          <img
-            src="pasangan.jpeg"
-            alt="Music Disc"
-            className="w-full h-full object-cover opacity-80"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-3 h-3 rounded-full backdrop-blur-sm"
-              style={{ backgroundColor: 'rgba(139, 111, 71, 0.2)', border: '1px solid rgba(139, 111, 71, 0.4)' }} />
-          </div>
-          {!isPlaying && (
-            <div className="absolute inset-0 flex items-center justify-center" style={{ backgroundColor: 'rgba(74, 55, 40, 0.4)' }}>
-              <Music className="text-white/80" size={20} />
+      {/* Floating Navbar */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.nav
+            initial={{ y: 100, x: '-50%', opacity: 0 }}
+            animate={{ y: 0, x: '-50%', opacity: 1 }}
+            exit={{ y: 100, x: '-50%', opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+            className="fixed bottom-6 left-1/2 z-50 w-[90%] max-w-[400px]"
+          >
+            <div 
+              className="flex items-center justify-around p-1.5 rounded-full backdrop-blur-xl shadow-2xl border border-white/20 px-3"
+              style={{ backgroundColor: 'rgba(74, 55, 40, 0.9)', paddingBottom: 'calc(0.375rem + env(safe-area-inset-bottom, 0px))' }}
+            >
+              {[
+                { id: 'home', icon: Home, label: 'Home' },
+                { id: 'couple', icon: Users, label: 'Mempelai' },
+                { id: 'gallery', icon: ImageIcon, label: 'Momen' },
+                { id: 'event', icon: MapPin, label: 'Acara' },
+                { id: 'gift', icon: Gift, label: 'Kado' },
+                { id: 'rsvp', icon: MessageSquareQuote, label: 'Doa' },
+              ].map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="flex-1 flex flex-col items-center justify-center py-1 transition-all active:scale-90"
+                >
+                  <item.icon size={18} className="text-white/90" />
+                  <span className="text-[7px] mt-0.5 text-white/50 font-medium uppercase tracking-tight" style={{ fontSize: '7px' }}>{item.label}</span>
+                </button>
+              ))}
             </div>
-          )}
-        </button>
-        <audio ref={audioRef} src="lagu.mp3" loop />
-      </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
+
+      {/* Music Player / Rotating Disc (Restored) */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="fixed top-6 right-6 z-50"
+          >
+            <button
+              onClick={toggleMusic}
+              className={`relative w-14 h-14 rounded-full overflow-hidden shadow-2xl transition-all active:scale-90 border-2 border-white/30 ${
+                isPlaying ? 'animate-spin-slow' : ''
+              }`}
+            >
+              <img
+                src="pasangan1.png"
+                alt="Music Disc"
+                className="w-full h-full object-cover opacity-80"
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#EDE4D8] border border-[#8B6F47]/30 shadow-inner" />
+              </div>
+              {!isPlaying && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[1px]">
+                  <Music className="text-white/80" size={16} />
+                </div>
+              )}
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <audio ref={audioRef} src="lagu.mp3" loop />
     </>
   );
 }
