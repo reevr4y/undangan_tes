@@ -274,7 +274,7 @@ export default function App() {
                 className="hero-video-section"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                viewport={{ once: false, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 1 }}
               >
                 <video
@@ -364,7 +364,7 @@ export default function App() {
                 <motion.section 
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, margin: "-100px" }}
+                  viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <div 
@@ -411,7 +411,7 @@ export default function App() {
                   className="space-y-10"
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: false, amount: 0.1 }}
+                  viewport={{ once: true, amount: 0.1 }}
                   variants={{
                     hidden: { opacity: 0 },
                     visible: {
@@ -521,7 +521,7 @@ export default function App() {
                   className="rounded-[40px] md:rounded-t-[80px] p-6 md:p-8 glass-effect"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.1 }}
+                  viewport={{ once: true, amount: 0.1 }}
                   transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <div className="text-center mb-8">
@@ -557,7 +557,7 @@ export default function App() {
                           className="relative pl-10"
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: false, amount: 0.2, margin: "-50px" }}
+                          viewport={{ once: true, amount: 0.2, margin: "-50px" }}
                           transition={{ duration: 0.8, delay: idx * 0.1 }}
                         >
                         <div className="absolute left-0 top-1 w-6 h-6 rounded-full glass-effect flex items-center justify-center border border-[#8B6F47]/30">
@@ -582,7 +582,7 @@ export default function App() {
                   className="rounded-[40px] md:rounded-t-[80px] p-6 md:p-8 glass-effect"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.2, margin: "-100px" }}
+                  viewport={{ once: true, amount: 0.2, margin: "-100px" }}
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <div className="text-center mb-8">
@@ -601,7 +601,7 @@ export default function App() {
                         className="rounded-lg overflow-hidden hover-scale shadow-sm"
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: false, amount: 0.3 }}
+                        viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.6, delay: (idx % 2) * 0.2 }}
                         style={{ border: '1px solid rgba(139, 111, 71, 0.2)' }}
                       >
@@ -621,7 +621,7 @@ export default function App() {
                   className="rounded-[40px] md:rounded-t-[80px] p-6 glass-effect"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.2, margin: "-100px" }}
+                  viewport={{ once: true, amount: 0.2, margin: "-100px" }}
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <FloralIcon />
@@ -657,7 +657,7 @@ export default function App() {
                         style={{ borderTop: '1px solid rgba(139, 111, 71, 0.15)' }}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true, margin: "-50px" }}
                         transition={{ duration: 0.8, delay: idx * 0.2 }}
                       >
                         <h3 className="text-xl mb-4 text-center" style={{ fontFamily: 'Cinzel Decorative, serif', letterSpacing: '2px', color: '#4A3728' }}>
@@ -711,7 +711,7 @@ export default function App() {
                   className="rounded-[40px] md:rounded-t-[80px] p-6 md:p-8 glass-effect"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.2, margin: "-100px" }}
+                  viewport={{ once: true, amount: 0.2, margin: "-100px" }}
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <div className="text-center mb-4">
@@ -785,7 +785,7 @@ export default function App() {
                   className="rounded-[60px] p-8 relative overflow-hidden"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.2, margin: "-100px" }}
+                  viewport={{ once: true, amount: 0.2, margin: "-100px" }}
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                   style={{ 
                     background: 'linear-gradient(165deg, rgba(255, 255, 255, 0.7) 0%, rgba(245, 237, 227, 0.6) 100%)',
@@ -816,7 +816,7 @@ export default function App() {
                     className="space-y-5 relative z-10"
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: false }}
+                    viewport={{ once: true, margin: "-50px" }}
                     variants={{
                       hidden: { opacity: 0 },
                       visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
@@ -950,7 +950,7 @@ export default function App() {
                   className="rounded-t-[80px] p-8 text-center glass-effect"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.2, margin: "-100px" }}
+                  viewport={{ once: true, amount: 0.2, margin: "-100px" }}
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <FloralIcon />
