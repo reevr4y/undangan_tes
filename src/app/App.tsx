@@ -539,11 +539,15 @@ export default function App() {
                     </h3>
                   </div>
                   
-                  <div className="space-y-12 relative">
-                    <motion.div 
-                      className="absolute left-[11px] top-2 bottom-2 w-px bg-[#8B6F47]/20"
-                      style={{ scaleY: lineScaleY, originY: 0 }}
-                    />
+                    <div className="space-y-12 relative">
+                      {/* Garis Dasar (Background) */}
+                      <div className="absolute left-[11px] top-3 bottom-6 w-px bg-[#8B6F47]/10" />
+                      
+                      {/* Garis Animasi (Progress) */}
+                      <motion.div 
+                        className="absolute left-[11px] top-3 bottom-6 w-px bg-[#8B6F47]/60"
+                        style={{ scaleY: lineScaleY, originY: 0 }}
+                      />
                     
                     {[
                       {
