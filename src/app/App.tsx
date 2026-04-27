@@ -163,17 +163,6 @@ export default function App() {
     '5.webp',
     '6.webp'
   ];
-
-  const [guestName, setGuestName] = useState('Bapak/Ibu/Saudara/i');
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const to = params.get('to');
-    if (to) {
-      setGuestName(to);
-    }
-  }, []);
-
   return (
     <>
       <AnimatePresence mode="wait">
@@ -203,8 +192,8 @@ export default function App() {
             />
 
             {/* Content overlay — positioned at the bottom */}
-            <div className="relative z-10 flex flex-col justify-end flex-1 pb-16 px-6 cover-content-animate">
-              <div className="text-center space-y-6">
+            <div className="relative z-10 flex flex-col justify-end flex-1 pb-12 px-6 cover-content-animate">
+              <div className="text-center space-y-5">
                 {/* THE WEDDING OF */}
                 <p className="tracking-[4px] text-sm"
                   style={{
@@ -234,19 +223,6 @@ export default function App() {
                   <div className="h-px w-12" style={{ backgroundColor: 'rgba(255,255,255,0.4)' }} />
                   <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'rgba(255,255,255,0.6)' }} />
                   <div className="h-px w-12" style={{ backgroundColor: 'rgba(255,255,255,0.4)' }} />
-                </div>
-
-                {/* Guest Info Section (Formal) */}
-                <div className="py-4 space-y-2">
-                  <p className="text-xs uppercase tracking-widest text-white/70" style={{ fontFamily: 'Alice, serif' }}>
-                    Kepada Yth.
-                  </p>
-                  <p className="text-lg font-bold text-white" style={{ fontFamily: 'Cinzel, serif' }}>
-                    {guestName}
-                  </p>
-                  <p className="text-[10px] text-white/60 italic" style={{ fontFamily: 'Lora, serif' }}>
-                    *Mohon maaf apabila ada kesalahan penulisan nama/gelar
-                  </p>
                 </div>
 
                 {/* BUKA UNDANGAN Button */}
