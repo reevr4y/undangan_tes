@@ -132,7 +132,7 @@ export default function App() {
   const storyRef = useRef(null);
   const { scrollYProgress: storyProgress } = useScroll({
     target: storyRef,
-    offset: ["start 80%", "end 20%"]
+    offset: ["start 70%", "end 50%"]
   });
   const lineScaleY = useSpring(storyProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
@@ -566,14 +566,14 @@ export default function App() {
                         content: "Alhamdulillah waktu yang kita nanti-nantikan tiba. Semoga kita menjadi keluarga yang sakinah mawaddah warahmah sampai tua nantinya bersama keluarga kecil kita. Mohon doanya teman-teman semua agar acaranya berjalan dengan lancar, Amin."
                       }
                     ].map((item, idx) => (
-                      <motion.div 
-                        key={idx}
-                        className="relative pl-10"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: false, amount: 0.5 }}
-                        transition={{ duration: 0.8, delay: idx * 0.2 }}
-                      >
+                        <motion.div 
+                          key={idx}
+                          className="relative pl-10"
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: false, amount: 0.2, margin: "-50px" }}
+                          transition={{ duration: 0.8, delay: idx * 0.1 }}
+                        >
                         <div className="absolute left-0 top-1 w-6 h-6 rounded-full glass-effect flex items-center justify-center border border-[#8B6F47]/30">
                           <motion.div 
                             className="w-2 h-2 rounded-full bg-[#8B6F47]"
