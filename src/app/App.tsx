@@ -59,6 +59,55 @@ export default function App() {
     return () => clearInterval(timer);
   }, []);
 
+  const [wishes, setWishes] = useState<any[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoadingWishes, setIsLoadingWishes] = useState(true);
+
+  // URL dari Google Apps Script kamu
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyhJmepBB9B4ludcfz4IcKflx8xuaIeQp2b-2YV7QdK3BQP_zltva9X9Sp8beGS1zB_/exec';
+
+  const fetchWishes = async () => {
+    try {
+      setIsLoadingWishes(true);
+      const response = await fetch(SCRIPT_URL);
+      const data = await response.json();
+      setWishes(data);
+    } catch (error) {
+      console.error('Error fetching wishes:', error);
+    } finally {
+      setIsLoadingWishes(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      fetchWishes();
+    }
+  }, [isOpen]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Terima kasih banyak atas konfirmasi dan doanya!');
+        setFormData({ nama: '', kehadiran: '', ucapan: '' });
+        fetchWishes(); // Refresh list
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Maaf, terjadi kesalahan saat mengirim data. Silakan coba lagi.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const [formData, setFormData] = useState({
     nama: '',
     kehadiran: '',
@@ -77,12 +126,6 @@ export default function App() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Terima kasih banyak atas konfirmasi Anda. Semoga kita bisa bertemu di hari bahagia kami!');
   };
 
   const itemVariants = {
@@ -851,7 +894,8 @@ export default function App() {
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.98 }}
                       type="submit"
-                      className="w-full py-4 rounded-full transition-all font-bold mt-4 shadow-md"
+                      disabled={isSubmitting}
+                      className="w-full py-4 rounded-full transition-all font-bold mt-4 shadow-md disabled:opacity-50"
                       style={{
                         fontFamily: 'Cinzel Decorative, serif',
                         fontSize: '0.9rem',
@@ -860,9 +904,50 @@ export default function App() {
                         color: '#FFFFFF',
                       }}
                     >
-                      KIRIM DOA & RESTU
+                      {isSubmitting ? 'MENGIRIM...' : 'KIRIM DOA & RESTU'}
                     </motion.button>
                   </motion.form>
+
+                  {/* Wishes Wall */}
+                  <div className="mt-12 space-y-6">
+                    <div className="h-px w-full bg-[#8B6F47]/20" />
+                    <h4 className="text-center text-xl" style={{ fontFamily: 'Cinzel Decorative, serif', color: '#4A3728' }}>
+                      Ucapan & Doa
+                    </h4>
+                    
+                    <div className="max-h-[400px] overflow-y-auto pr-2 space-y-4 custom-scrollbar">
+                      {isLoadingWishes ? (
+                        <div className="text-center py-8">
+                          <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#8B6F47]" />
+                          <p className="mt-2 text-sm italic" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>Memuat ucapan...</p>
+                        </div>
+                      ) : wishes.length === 0 ? (
+                        <p className="text-center text-sm italic py-8" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
+                          Belum ada ucapan. Jadilah yang pertama memberikan doa!
+                        </p>
+                      ) : (
+                        wishes.map((wish, idx) => (
+                          <motion.div 
+                            key={idx}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: idx * 0.1 }}
+                            className="p-4 rounded-2xl bg-white/40 border border-[#8B6F47]/10"
+                          >
+                            <div className="flex justify-between items-start mb-2">
+                              <h5 className="font-bold text-sm" style={{ fontFamily: 'Alice, serif', color: '#4A3728' }}>{wish.nama}</h5>
+                              <span className="text-[9px] px-2 py-0.5 rounded-full bg-[#8B6F47]/10 text-[#8B6F47] uppercase font-bold tracking-tighter">
+                                {wish.kehadiran === 'hadir' ? 'Hadir' : 'Berhalangan'}
+                              </span>
+                            </div>
+                            <p className="text-xs leading-relaxed italic" style={{ fontFamily: 'Lora, serif', color: '#6B5339' }}>
+                              "{wish.ucapan}"
+                            </p>
+                          </motion.div>
+                        ))
+                      )}
+                    </div>
+                  </div>
                 </motion.section>
 
                 {/* Footer / Closing */}
